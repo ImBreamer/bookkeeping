@@ -1,6 +1,8 @@
 package com.book.keeping.bookkeeping.service;
 
+import com.book.keeping.bookkeeping.common.result.Result;
 import com.book.keeping.bookkeeping.entity.User;
+import com.book.keeping.bookkeeping.entity.parameter.WeiXinPostInfo;
 import com.github.pagehelper.PageInfo;
 
 /**
@@ -30,4 +32,13 @@ public interface UserService {
      * @return int
      */
     int insertUser(User user);
+
+    /**
+     * 功能描述:
+     * @author zhang.penghao
+     * @param weiXinPostInfo {@link WeiXinPostInfo}
+     * @date 2019/11/18
+     * @return Result
+     */
+    Result checkWeiXinInfo(WeiXinPostInfo weiXinPostInfo)  throws Exception ;
 }

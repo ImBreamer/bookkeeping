@@ -5,7 +5,7 @@ import lombok.ToString;
 
 @Data
 @ToString
-public class WeiXInPostInfo {
+public class WeiXinPostInfo {
     String jsCode;
     String avatarUrl;
     String nickName;
