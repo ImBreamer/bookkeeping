@@ -75,14 +75,13 @@ public class UserServiceImpl implements UserService {
                 user.setFaceImage(weiXinPostInfo.getAvatarUrl());
                 user.setPassword(DigestUtils.sha1Hex(userId.substring(0,8)));
                 user.setStatus(0);
+                if(userMapper.insert(user) < 1){
+                    return Result.error(ResultEnum.FAIL_ERROR_PARAM);
+                }
             }
-            if(userMapper.insert(user) > 0){
-                result.put("userId", user.getUserId());
-                result.put("token", TokenUtil.createToken(user.getUserId()));
-                return Result.success(result);
-            }else{
-                return Result.error(ResultEnum.FAIL_ERROR_PARAM);
-            }
+            result.put("userId", user.getUserId());
+            result.put("token", TokenUtil.createToken(user.getUserId()));
+            return Result.success(result);
         }else{
             return Result.error(result.getInteger("errcode"), result.getString("errmsg"));
         }
