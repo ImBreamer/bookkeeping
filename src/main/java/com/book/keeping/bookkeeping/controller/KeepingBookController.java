@@ -1,6 +1,7 @@
 package com.book.keeping.bookkeeping.controller;
 
 
+import com.book.keeping.bookkeeping.common.result.Result;
 import com.book.keeping.bookkeeping.entity.reflect.UserMonthDayBook;
 import com.book.keeping.bookkeeping.service.KeepingBookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +24,8 @@ public class KeepingBookController {
     KeepingBookService keepingBookService;
 
     @GetMapping("/test")
-    public List<UserMonthDayBook> listUserMonthDayBook(String month, String userId){
-        return keepingBookService.listUserMonthDayBook(month,userId);
+    public Result listUserMonthDayBook(String month, String userId){
+        return Result.success(keepingBookService.listUserMonthDayBook(month,userId));
     }
 
 }
