@@ -17,6 +17,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -36,6 +37,7 @@ public class UserServiceImpl implements UserService {
     private final String SECRET_ID = "c5cceae911489c4d691d52ecf746ccba";
     private final UserMapper userMapper;
     private final HttpService httpService;
+    private final StringRedisTemplate redisTemplate;
 
     /**
      * @see UserService#listUser(Integer, Integer)
@@ -79,8 +81,10 @@ public class UserServiceImpl implements UserService {
                     return Result.error(ResultEnum.FAIL_ERROR_PARAM);
                 }
             }
+            String token = TokenUtil.createToken(user.getUserId());
+            redisTemplate.opsForValue().set(user.getUserId(),token);
             result.put("userId", user.getUserId());
-            result.put("token", TokenUtil.createToken(user.getUserId()));
+            result.put("token", token);
             return Result.success(result);
         }else{
             return Result.error(result.getInteger("errcode"), result.getString("errmsg"));

@@ -1,6 +1,6 @@
 package com.book.keeping.bookkeeping.config.handler;
 
-import com.book.keeping.bookkeeping.common.Constant;
+import com.book.keeping.bookkeeping.entity.system.Constant;
 import com.book.keeping.bookkeeping.common.exception.TokenInvalidException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Configuration;

@@ -1,6 +1,6 @@
 package com.book.keeping.bookkeeping.config.filter;
 
-import com.book.keeping.bookkeeping.common.Constant;
+import com.book.keeping.bookkeeping.entity.system.Constant;
 import com.book.keeping.bookkeeping.utils.TokenUtil;
 import lombok.extern.slf4j.Slf4j;
 

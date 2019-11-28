@@ -3,6 +3,12 @@ package com.book.keeping.bookkeeping.common;
 import com.book.keeping.bookkeeping.utils.GlobalIdUtil;
 import com.book.keeping.bookkeeping.utils.TokenUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.util.StringUtils;
+
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * @author chen.hailin
@@ -13,11 +19,18 @@ import lombok.extern.slf4j.Slf4j;
 public class AesOperatorTest {
 
     public static void main(String[] args) throws Exception {
-        Long s = GlobalIdUtil.nextId();
-        String token = TokenUtil.createToken(String.valueOf(s));
-        log.info("{}", s);
-           log.info(token);
-        log.info(TokenUtil.getUserId(token));
+//        String s = GlobalIdUtil.nextId();
+//        String token = TokenUtil.createToken(String.valueOf(s));
+//        log.info("{}", s);
+//           log.info(token);
+//        log.info(TokenUtil.getUserId(token));
+
+       String s = "/book/user/wx/info,/book/test/set,/book/test/get";
+       List<String> set =  Arrays.asList(s.trim().split(","));
+       for(String ss : set){
+           log.info(ss);
+       }
+       log.info("{}",set.contains("/book/test/set"));
 
     }
 }

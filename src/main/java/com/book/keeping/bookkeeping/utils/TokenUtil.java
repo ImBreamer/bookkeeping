@@ -2,8 +2,7 @@ package com.book.keeping.bookkeeping.utils;
 
 
 import com.book.keeping.bookkeeping.common.AesOperator;
-import com.book.keeping.bookkeeping.common.Constant;
-import com.book.keeping.bookkeeping.common.exception.TokenInvalidException;
+import com.book.keeping.bookkeeping.entity.system.Constant;
 import lombok.extern.slf4j.Slf4j;
 
 /**

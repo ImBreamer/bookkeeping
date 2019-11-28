@@ -39,7 +39,9 @@ public class BookKeepingApplication {
                 registry.addInterceptor(setAppInterceptorBean())
                         .addPathPatterns("/**")
                         .excludePathPatterns(
-                                "/book/user/wx/info"
+                                "/book/user/wx/info",
+                                "/book/test/set",
+                                "/book/test/get"
                         );
             }
 
