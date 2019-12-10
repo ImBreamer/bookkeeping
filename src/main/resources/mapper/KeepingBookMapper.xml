@@ -24,7 +24,8 @@
         <result property="userId" column="user_id"/>
         <collection property="keepingBooks" column="{userId=user_id, bookDate=book_date}"
                     javaType="ArrayList"
-                    ofType="com.book.keeping.bookkeeping.entity.reflect.KeepingBookListItem" select="listUserDayBook"></collection>
+                    ofType="com.book.keeping.bookkeeping.entity.reflect.KeepingBookListItem"
+                    select="listUserDayBook"></collection>
     </resultMap>
 
     <select id="listUserMonthDayBook" resultMap="listUserMonthDayBookMap">
@@ -52,5 +53,22 @@
       FROM keeping_book kb LEFT JOIN book_user_tag but ON kb.book_tag = but.tag_id
       WHERE kb.user_id = #{userId}  and kb.book_date = #{bookDate}
     </select>
+
+
+    <insert id="InsertKeepingBookOrigin" parameterType="com.book.keeping.bookkeeping.entity.KeepingBook">
+      INSERT INTO `book_keeping`.`keeping_book`
+            (             `user_id`,
+             `book_date`,
+             `book_tag`,
+             `book_coast`,
+             `remark`,
+             `account`)
+      VALUES (#{book.userId},
+        #{book.bookDate},
+        #{book.bookTag},
+        #{book.bookCoast},
+        #{book.remark},
+        #{book.account});
+    </insert>
 
 </mapper>

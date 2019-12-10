@@ -1,5 +1,6 @@
 package com.book.keeping.bookkeeping.service.impl;
 
+import com.book.keeping.bookkeeping.entity.KeepingBook;
 import com.book.keeping.bookkeeping.entity.reflect.KeepingBookListItem;
 import com.book.keeping.bookkeeping.entity.reflect.UserMonthDayBook;
 import com.book.keeping.bookkeeping.mapper.KeepingBookMapper;
@@ -39,5 +40,14 @@ public class KeepingBookServiceImpl  implements KeepingBookService {
     @Override
     public List<KeepingBookListItem> listUserDayBook(String month, String userId) {
         return keepingBookMapper.listUserDayBook(month,userId);
+    }
+
+    /**
+     * @see KeepingBookService#insertKeepingBook(KeepingBook)
+     * */
+    @Override
+    public int insertKeepingBook(KeepingBook keepingBook) {
+        log.info("{}", keepingBook);
+        return keepingBookMapper.InsertKeepingBookOrigin(keepingBook);
     }
 }

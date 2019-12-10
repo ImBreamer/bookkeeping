@@ -34,4 +34,13 @@ public interface KeepingBookMapper extends BaseMapper<KeepingBook> {
      * @return {@link KeepingBookListItem}
      */
     List<KeepingBookListItem> listUserDayBook(@Param("bookDate") String bookDate, @Param("userId") String userId);
+
+    /**
+     * 功能描述:
+     * @author zhang.penghao
+     * @param book 账单{@link KeepingBook}
+     * @date 2019/12/10
+     * @return int
+     */
+    int InsertKeepingBookOrigin(@Param("book") KeepingBook book);
 }

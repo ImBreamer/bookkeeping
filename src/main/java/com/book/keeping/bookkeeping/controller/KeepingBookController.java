@@ -2,12 +2,11 @@ package com.book.keeping.bookkeeping.controller;
 
 
 import com.book.keeping.bookkeeping.common.result.Result;
+import com.book.keeping.bookkeeping.entity.KeepingBook;
 import com.book.keeping.bookkeeping.entity.reflect.UserMonthDayBook;
 import com.book.keeping.bookkeeping.service.KeepingBookService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,6 +25,13 @@ public class KeepingBookController {
     @GetMapping("/test")
     public Result listUserMonthDayBook(String month, String userId){
         return Result.success(keepingBookService.listUserMonthDayBook(month,userId));
+    }
+
+
+    @PostMapping
+    public Result insertKeepingBook(String userId, @RequestBody KeepingBook keepingBook){
+        keepingBook.setUserId(userId);
+        return Result.success(keepingBookService.insertKeepingBook(keepingBook));
     }
 
 }
