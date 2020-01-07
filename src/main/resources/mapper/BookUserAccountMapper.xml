@@ -9,4 +9,19 @@
     <result column="user_id" jdbcType="VARCHAR" property="userId" />
     <result column="account_name" jdbcType="VARCHAR" property="accountName" />
   </resultMap>
+
+  <select id="listUserAccount" resultType="com.book.keeping.bookkeeping.entity.reflect.BookUserAccountDTO">
+    SELECT
+      account_id,
+      account_name,
+      IF(user_id = 0,TRUE,FALSE) AS account_type
+    FROM book_user_account where user_id in ( '0', #{userId}) and deleted = 0
+
+  </select>
+
+  <delete id="deleteUserAccount">
+
+    update book_user_account set deleted = 1 where account_id = #{id} and user_id = #{userId}
+
+  </delete>
 </mapper>
