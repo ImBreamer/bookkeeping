@@ -10,4 +10,20 @@
     <result column="tag_name" jdbcType="VARCHAR" property="tagName" />
     <result column="tag_icon" jdbcType="VARCHAR" property="tagIcon" />
   </resultMap>
+
+  <select id="listUserTag" resultType="com.book.keeping.bookkeeping.entity.reflect.BookUserTagDTO">
+    SELECT
+      tag_id,
+      tag_name,
+      IF(user_id = 0,TRUE,FALSE) AS tag_type,
+      tag_icon
+    FROM book_user_tag where user_id in ( '0', #{userId}) and deleted = 0
+
+  </select>
+
+  <delete id="deleteUserTag">
+
+    update book_user_tag set deleted = 1 where tag_id = #{id} and user_id = #{userId}
+
+  </delete>
 </mapper>

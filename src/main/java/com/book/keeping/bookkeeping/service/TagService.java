@@ -1,18 +1,20 @@
-package com.book.keeping.bookkeeping.mapper;
+package com.book.keeping.bookkeeping.service;
 
-import com.book.keeping.bookkeeping.common.BaseMapper;
+import com.book.keeping.bookkeeping.entity.BookUserAccount;
 import com.book.keeping.bookkeeping.entity.BookUserTag;
 import com.book.keeping.bookkeeping.entity.reflect.BookUserTagDTO;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 /**
- * 用户类目Mapper
+ * 功能描述
+ *
  * @author zhang.penghao
- * @date 2019/11/18
+ * @version V1.0
+ * @date 2019/11/7
  */
-public interface BookUserTagMapper extends BaseMapper<BookUserTag> {
+public interface TagService {
+
     /**
      * 功能描述:删除用户类目
      * @author zhang.penghao
@@ -21,14 +23,14 @@ public interface BookUserTagMapper extends BaseMapper<BookUserTag> {
      * @date 2019/11/18
      * @return int
      */
-    int deleteUserTag(@Param("id") int id,@Param("userId") String userId);
+    int deleteUserTag(int id, String userId);
 
     /**
      * 功能描述:查询用户下所有账户
      * @author zhang.penghao
      * @param userId 用户ID
      * @date 2019/11/18
-     * @return {@link BookUserTagDTO}
+     * @return {@link BookUserAccount}
      */
     List<BookUserTagDTO> listUserTag(String userId);
 
@@ -40,4 +42,6 @@ public interface BookUserTagMapper extends BaseMapper<BookUserTag> {
      * @return int
      */
     int insertTag(BookUserTag tag);
+
+
 }
