@@ -32,4 +32,18 @@ public class KeepingBookController {
         return Result.success(keepingBookService.insertKeepingBook(keepingBook));
     }
 
+    //TODO  年度类目分布 -- 饼图
+    //TODO  年度类目账单列表
+    //TODO  年度月度分布 -- 饼图
+    //TODO  年度月度账单列表
+    //TODO  月度类目分布 -- 饼图
+    //TODO  月度类目账单列表
+    //TODO  月度日期分布 -- 饼图
+    //TODO  月度日期账单列表
+    //TODO  周度类目分布 -- 饼图
+    //TODO  周度类目账单列表
+    //TODO  周度日期分布 -- 饼图
+    //TODO  周度日期账单列表
+
+
 }

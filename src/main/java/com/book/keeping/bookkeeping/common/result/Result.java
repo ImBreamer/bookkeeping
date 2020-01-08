@@ -1,6 +1,6 @@
 package com.book.keeping.bookkeeping.common.result;
 
-import com.book.keeping.bookkeeping.config.transfer.PageListTrasfer;
+import com.book.keeping.bookkeeping.config.transfer.PageListTransfer;
 import com.github.pagehelper.PageInfo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,23 +24,23 @@ public class Result<T> implements Serializable {
     private String msg;
     private T data;
 
-    public Result(ResultEnum type){
+    private Result(ResultEnum type){
         this.code = type.getCode();
         this.msg = type.getMessage();
     }
 
-    public Result(ResultEnum type,String content){
+    private Result(ResultEnum type,String content){
         this.code = type.getCode();
         this.msg = content;
     }
 
-    public Result(ResultEnum type,T data){
+    private Result(ResultEnum type,T data){
         this.code = type.getCode();
         this.msg = type.getMessage();
         this.data = data;
     }
 
-    public Result(Integer code,String content ){
+    private Result(Integer code,String content ){
         this.code = code;
         this.msg = content;
     }
@@ -57,9 +57,9 @@ public class Result<T> implements Serializable {
 
     public static <T> Result<T> success(T data){
         if(data instanceof PageInfo){
-            PageListTrasfer pageListTrasfer = new PageListTrasfer();
-            BeanUtils.copyProperties(data, pageListTrasfer);
-            return new Result(ResultEnum.SUCCESS, pageListTrasfer);
+            PageListTransfer pageListTransfer = new PageListTransfer();
+            BeanUtils.copyProperties(data, pageListTransfer);
+            return new Result(ResultEnum.SUCCESS, pageListTransfer);
         }
         return new Result(ResultEnum.SUCCESS, data);
     }

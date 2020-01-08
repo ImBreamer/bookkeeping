@@ -16,7 +16,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class PageListTrasfer<T>  {
+public class PageListTransfer<T>  {
 
     private long total;
     private List<T> list;
