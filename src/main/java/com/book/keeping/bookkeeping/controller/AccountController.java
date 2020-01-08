@@ -1,13 +1,12 @@
 package com.book.keeping.bookkeeping.controller;
 
 import com.book.keeping.bookkeeping.common.result.Result;
-import com.book.keeping.bookkeeping.entity.KeepingBook;
+import com.book.keeping.bookkeeping.entity.BookUserAccount;
+import com.book.keeping.bookkeeping.service.AccountService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.concurrent.TimeUnit;
 
 /**
  * 功能描述
@@ -22,15 +21,21 @@ import java.util.concurrent.TimeUnit;
 public class AccountController {
 
     @Autowired
-    StringRedisTemplate redisTemplate;
+    AccountService accountService;
 
     @PostMapping
-    public Result setRedis(String userId, @RequestBody KeepingBook keepingBook) {
-        return Result.success();
+    public Result insertAccount(String userId,@Validated @RequestBody BookUserAccount account) {
+        account.setUserId(userId);
+        return Result.success(accountService.insertAccount(account));
     }
 
     @GetMapping
-    public Result getRedis(String userId) {
-        return Result.success(redisTemplate.opsForValue().get(userId));
+    public Result listUserAccount(String userId) {
+        return Result.success(accountService.listUserAccount(userId));
+    }
+
+    @DeleteMapping("/{id}")
+    public Result deleteUserAccount(@PathVariable Integer id,String userId) {
+        return Result.success(accountService.deleteUserAccount(id,userId));
     }
 }

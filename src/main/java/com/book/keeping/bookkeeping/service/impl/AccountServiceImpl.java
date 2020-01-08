@@ -1,6 +1,7 @@
 package com.book.keeping.bookkeeping.service.impl;
 
 import com.book.keeping.bookkeeping.entity.BookUserAccount;
+import com.book.keeping.bookkeeping.entity.reflect.BookUserAccountDTO;
 import com.book.keeping.bookkeeping.mapper.BookUserAccountMapper;
 import com.book.keeping.bookkeeping.service.AccountService;
 import lombok.RequiredArgsConstructor;
@@ -26,16 +27,16 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public int deleteUserAccount(int id, String userId) {
-        return 0;
+        return accountMapper.deleteUserAccount(id,userId);
     }
 
     @Override
-    public List<BookUserAccount> listUserAccount(String userId) {
-        return null;
+    public List<BookUserAccountDTO> listUserAccount(String userId) {
+        return accountMapper.listUserAccount(userId);
     }
 
     @Override
     public int insertAccount(BookUserAccount account) {
-        return 0;
+        return accountMapper.insert(account);
     }
 }

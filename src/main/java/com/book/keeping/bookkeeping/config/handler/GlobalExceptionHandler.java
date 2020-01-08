@@ -4,11 +4,10 @@ import com.book.keeping.bookkeeping.common.exception.TokenInvalidException;
 import com.book.keeping.bookkeeping.common.result.Result;
 import com.book.keeping.bookkeeping.common.result.ResultEnum;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import javax.validation.ConstraintViolationException;
 
 /**
  * 全局异常处理配置
@@ -24,10 +23,10 @@ public class GlobalExceptionHandler {
      * @author zhang.penghao
      * @date 2018/12/11 11:37
      * */
-    @ExceptionHandler(value=ConstraintViolationException.class)
+    @ExceptionHandler(value=MethodArgumentNotValidException.class)
     @ResponseBody
-    public Result handlerViolationException(ConstraintViolationException e){
-        return Result.error(ResultEnum.FAIL_ERROR_PARAM, e.getMessage());
+    public Result handlerViolationException(MethodArgumentNotValidException e){
+        return Result.error(ResultEnum.FAIL_ERROR_PARAM, e.getBindingResult().getFieldError().getDefaultMessage());
     }
 
     /**

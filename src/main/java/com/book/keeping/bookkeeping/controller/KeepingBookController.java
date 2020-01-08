@@ -3,12 +3,10 @@ package com.book.keeping.bookkeeping.controller;
 
 import com.book.keeping.bookkeeping.common.result.Result;
 import com.book.keeping.bookkeeping.entity.KeepingBook;
-import com.book.keeping.bookkeeping.entity.reflect.UserMonthDayBook;
 import com.book.keeping.bookkeeping.service.KeepingBookService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 /**
  * 账单控制层
@@ -29,7 +27,7 @@ public class KeepingBookController {
 
 
     @PostMapping
-    public Result insertKeepingBook(String userId, @RequestBody KeepingBook keepingBook){
+    public Result insertKeepingBook(String userId, @Validated @RequestBody KeepingBook keepingBook){
         keepingBook.setUserId(userId);
         return Result.success(keepingBookService.insertKeepingBook(keepingBook));
     }

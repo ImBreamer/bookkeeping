@@ -1,6 +1,7 @@
 package com.book.keeping.bookkeeping.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 /**
  * 用户类目表实体类
@@ -26,12 +27,14 @@ public class BookUserTag {
     /**
      * 类目名称
      */
+    @NotBlank(message = "类目名称不能为空")
     @Column(name = "tag_name")
     private String tagName;
 
     /**
      * 类目标识
      */
+    @NotBlank(message = "类目标识不能为空")
     @Column(name = "tag_icon")
     private String tagIcon;
 

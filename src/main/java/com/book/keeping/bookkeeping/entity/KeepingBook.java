@@ -1,8 +1,11 @@
 package com.book.keeping.bookkeeping.entity;
 
+import com.book.keeping.bookkeeping.common.validation.constraints.DateFormatValidation;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.Date;
-import javax.persistence.*;
 
 /**
  * 账单表实体类
@@ -27,18 +30,22 @@ public class KeepingBook {
     /**
      * 账单时间
      */
+    @NotNull(message = "账单时间不能为空")
+    @DateFormatValidation
     @Column(name = "book_date")
-    private Date bookDate;
+    private String bookDate;
 
     /**
      * 账单类目
      */
+    @NotNull(message = "账单类目不能为空")
     @Column(name = "book_tag")
     private Integer bookTag;
 
     /**
      * 账单金额
      */
+    @NotNull(message = "账单金额不能为空")
     @Column(name = "book_coast")
     private BigDecimal bookCoast;
 
@@ -56,6 +63,7 @@ public class KeepingBook {
     /**
      * 账户
      */
+    @NotNull(message = "账单账户不能为空")
     private Long account;
 
     /**
@@ -99,7 +107,7 @@ public class KeepingBook {
      *
      * @return book_date - 账单时间
      */
-    public Date getBookDate() {
+    public String getBookDate() {
         return bookDate;
     }
 
@@ -108,7 +116,7 @@ public class KeepingBook {
      *
      * @param bookDate 账单时间
      */
-    public void setBookDate(Date bookDate) {
+    public void setBookDate(String bookDate) {
         this.bookDate = bookDate;
     }
 

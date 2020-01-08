@@ -1,17 +1,12 @@
 package com.book.keeping.bookkeeping.controller;
 
-import com.alibaba.fastjson.JSONObject;
 import com.book.keeping.bookkeeping.common.result.Result;
 import com.book.keeping.bookkeeping.entity.BookUserTag;
-import com.book.keeping.bookkeeping.entity.KeepingBook;
 import com.book.keeping.bookkeeping.service.TagService;
-import com.book.keeping.bookkeeping.utils.TokenUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.concurrent.TimeUnit;
 
 /**
  * 功能描述
@@ -29,7 +24,7 @@ public class TagController {
     TagService tagService;
 
     @PostMapping
-    public Result insertTag(String userId, @RequestBody BookUserTag tag) {
+    public Result insertTag(String userId,@Validated @RequestBody BookUserTag tag) {
         tag.setUserId(userId);
         return Result.success(tagService.insertTag(tag));
     }

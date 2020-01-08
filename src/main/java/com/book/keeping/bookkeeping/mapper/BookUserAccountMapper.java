@@ -2,6 +2,8 @@ package com.book.keeping.bookkeeping.mapper;
 
 import com.book.keeping.bookkeeping.common.BaseMapper;
 import com.book.keeping.bookkeeping.entity.BookUserAccount;
+import com.book.keeping.bookkeeping.entity.reflect.BookUserAccountDTO;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -20,23 +22,15 @@ public interface BookUserAccountMapper extends BaseMapper<BookUserAccount> {
      * @date 2019/11/18
      * @return int
      */
-    int deleteUserAccount(int id, String userId);
+    int deleteUserAccount(@Param("id")int id,@Param("userId") String userId);
 
     /**
      * 功能描述:查询用户下所有账户
      * @author zhang.penghao
      * @param userId 用户ID
      * @date 2019/11/18
-     * @return {@link BookUserAccount}
+     * @return {@link BookUserAccountDTO}
      */
-    List<BookUserAccount> listUserAccount(String userId);
+    List<BookUserAccountDTO> listUserAccount(String userId);
 
-    /**
-     * 功能描述: 添加用户账单账户
-     * @author zhang.penghao
-     * @param account 账单 {@link BookUserAccount}
-     * @date 2019/11/18
-     * @return int
-     */
-    int insertAccount(BookUserAccount account);
 }

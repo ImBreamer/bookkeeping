@@ -1,6 +1,7 @@
 package com.book.keeping.bookkeeping.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 /**
  * 用户账户表实体类
@@ -26,6 +27,7 @@ public class BookUserAccount {
     /**
      * 账户名称
      */
+    @NotBlank(message = "账户名不能为空")
     @Column(name = "account_name")
     private String accountName;
 

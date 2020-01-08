@@ -1,8 +1,7 @@
 package com.book.keeping.bookkeeping.service;
 
 import com.book.keeping.bookkeeping.entity.BookUserAccount;
-import com.book.keeping.bookkeeping.entity.reflect.KeepingBookListItem;
-import com.book.keeping.bookkeeping.entity.reflect.UserMonthDayBook;
+import com.book.keeping.bookkeeping.entity.reflect.BookUserAccountDTO;
 
 import java.util.List;
 
@@ -30,9 +29,9 @@ public interface AccountService {
      * @author zhang.penghao
      * @param userId 用户ID
      * @date 2019/11/18
-     * @return {@link BookUserAccount}
+     * @return {@link BookUserAccountDTO}
      */
-    List<BookUserAccount> listUserAccount(String userId);
+    List<BookUserAccountDTO> listUserAccount(String userId);
 
     /**
      * 功能描述: 添加用户账单账户

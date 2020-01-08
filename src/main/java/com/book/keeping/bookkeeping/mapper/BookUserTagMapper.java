@@ -32,12 +32,4 @@ public interface BookUserTagMapper extends BaseMapper<BookUserTag> {
      */
     List<BookUserTagDTO> listUserTag(String userId);
 
-    /**
-     * 功能描述: 添加用户账单账户
-     * @author zhang.penghao
-     * @param tag 账单 {@link BookUserTag}
-     * @date 2019/11/18
-     * @return int
-     */
-    int insertTag(BookUserTag tag);
 }
