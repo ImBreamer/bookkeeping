@@ -25,16 +25,58 @@ public class KeepingBookController {
         return Result.success(keepingBookService.listUserMonthDayBook(month,userId));
     }
 
-
+    /**
+     * 功能描述: 记账
+     * @author zhang.penghao
+     * @date 2020/1/9
+     */
     @PostMapping
     public Result insertKeepingBook(String userId, @Validated @RequestBody KeepingBook keepingBook){
         keepingBook.setUserId(userId);
         return Result.success(keepingBookService.insertKeepingBook(keepingBook));
     }
 
-    //TODO  年度类目分布 -- 饼图
-    //TODO  年度类目账单列表
-    //TODO  年度月度分布 -- 饼图
+    /**
+     * 功能描述: 年度类目分布 -- 饼图
+     * @author zhang.penghao
+     * @date 2020/1/9
+     */
+    @GetMapping("/year/tag/pie")
+    public Result listUserYearTagBookPie(String year, String userId){
+        return Result.success(keepingBookService.listUserYearTagBookPie(year,userId));
+    }
+
+    /**
+     * 功能描述: 年度类目账单列表
+     * @author zhang.penghao
+     * @date 2020/1/9
+     */
+    @GetMapping("/year/tag/list")
+    public Result listUserYearTagBookList(String year,int tag, String userId){
+        return Result.success(keepingBookService.listUserYearTagBookList(year,tag,userId));
+    }
+
+    /**
+     * 功能描述: 年度月度分布 -- 饼图
+     * @author zhang.penghao
+     * @date 2020/1/9
+     */
+    @GetMapping("/year/month/pie")
+    public Result listUserYearMonthBookPie(String year, String userId){
+        return Result.success(keepingBookService.listUserYearMonthBookPie(year,userId));
+    }
+
+    /**
+     * 功能描述: 年度类目账单列表
+     * @author zhang.penghao
+     * @date 2020/1/9
+     */
+    @GetMapping("/year/month/list")
+    public Result listUserYearMonthBookList(String year,int month, String userId){
+        return Result.success(keepingBookService.listUserYearMonthBookList(year,month,userId));
+    }
+
+    //TODO
     //TODO  年度月度账单列表
     //TODO  月度类目分布 -- 饼图
     //TODO  月度类目账单列表
