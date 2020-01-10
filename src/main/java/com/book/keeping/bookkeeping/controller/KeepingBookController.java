@@ -72,8 +72,8 @@ public class KeepingBookController {
      * @date 2020/1/9
      */
     @GetMapping("/year/month/list")
-    public Result listUserYearMonthBookList(String year,int month, String userId){
-        return Result.success(keepingBookService.listUserYearMonthBookList(year,month,userId));
+    public Result listUserYearMonthBookList(String month, String userId){
+        return Result.success(keepingBookService.listUserYearMonthBookList(month,userId));
     }
 
     //TODO

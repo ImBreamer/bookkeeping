@@ -1,11 +1,9 @@
 package com.book.keeping.bookkeeping.service;
 
-import com.book.keeping.bookkeeping.common.result.Result;
 import com.book.keeping.bookkeeping.entity.KeepingBook;
 import com.book.keeping.bookkeeping.entity.reflect.KeepingBookListItem;
+import com.book.keeping.bookkeeping.entity.reflect.KeepingBookPieObject;
 import com.book.keeping.bookkeeping.entity.reflect.UserMonthDayBook;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -50,35 +48,42 @@ public interface KeepingBookService {
 
     /**
      * 功能描述: 年度类目分布 -- 饼图
+     * @param year 账单年份
+     * @param userId 用户ID
      * @author zhang.penghao
      * @date 2020/1/9
+     * @return {@link KeepingBookPieObject}
      */
-    public Result listUserYearTagBookPie(String year, String userId){
-        return Result.success(keepingBookService.listUserYearTagBookPie(year,userId));
-    }
+    KeepingBookPieObject listUserYearTagBookPie(String year, String userId);
 
     /**
      * 功能描述: 年度类目账单列表
+     * @param year 账单年份
+     * @param tag 账单类目
+     * @param userId 用户ID
      * @author zhang.penghao
      * @date 2020/1/9
+     * @return {@link KeepingBookListItem}
      */
-    public Result listUserYearTagBookList(String year,int tag, String userId){
-        return Result.success(keepingBookService.listUserYearTagBookList(year,tag,userId));
-    }
+    List<KeepingBookListItem> listUserYearTagBookList(String year,int tag, String userId);
 
     /**
      * 功能描述: 年度月度分布 -- 饼图
+     * @param year 账单年份
+     * @param userId 用户ID
      * @author zhang.penghao
      * @date 2020/1/9
+     * @return {@link KeepingBookPieObject}
      */
-    public Result listUserYearMonthBookPie(String year, String userId){
-        return Result.success(keepingBookService.listUserYearMonthBookPie(year,userId));
-    }
+    KeepingBookPieObject listUserYearMonthBookPie(String year, String userId);
 
     /**
      * 功能描述: 年度类目账单列表
+     * @param month 账单月度
+     * @param userId 用户ID
      * @author zhang.penghao
      * @date 2020/1/9
+     * @return {@link KeepingBookListItem}
      */
-    listUserYearMonthBookList(String year,int month, String userId);
+    List<KeepingBookListItem> listUserYearMonthBookList(String month, String userId);
 }

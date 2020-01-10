@@ -2,6 +2,7 @@ package com.book.keeping.bookkeeping.service.impl;
 
 import com.book.keeping.bookkeeping.entity.KeepingBook;
 import com.book.keeping.bookkeeping.entity.reflect.KeepingBookListItem;
+import com.book.keeping.bookkeeping.entity.reflect.KeepingBookPieObject;
 import com.book.keeping.bookkeeping.entity.reflect.UserMonthDayBook;
 import com.book.keeping.bookkeeping.mapper.KeepingBookMapper;
 import com.book.keeping.bookkeeping.service.KeepingBookService;
@@ -49,5 +50,25 @@ public class KeepingBookServiceImpl  implements KeepingBookService {
     public int insertKeepingBook(KeepingBook keepingBook) {
         log.info("{}", keepingBook);
         return keepingBookMapper.InsertKeepingBookOrigin(keepingBook);
+    }
+
+    @Override
+    public KeepingBookPieObject listUserYearTagBookPie(String year, String userId) {
+        return null;
+    }
+
+    @Override
+    public List<KeepingBookListItem> listUserYearTagBookList(String year, int tag, String userId) {
+        return null;
+    }
+
+    @Override
+    public KeepingBookPieObject listUserYearMonthBookPie(String year, String userId) {
+        return null;
+    }
+
+    @Override
+    public List<KeepingBookListItem> listUserYearMonthBookList(String  month, String userId) {
+        return null;
     }
 }

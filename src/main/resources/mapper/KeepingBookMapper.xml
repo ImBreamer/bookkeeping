@@ -46,6 +46,7 @@
       SELECT
       kb.id,
       kb.book_tag,
+      kb.book_date,
       but.tag_name,
       but.tag_icon,
       kb.book_coast,
@@ -70,5 +71,52 @@
         #{book.remark},
         #{book.account});
     </insert>
+
+    <select id="listUserYearTagBookPie" resultType="com.book.keeping.bookkeeping.entity.reflect.KeepingBookPieObject">
+        SELECT
+           tag_name as name,
+           sum_book_coast as data,
+           book_tag as paramKey,
+           tag_icon as keyMark
+        FROM view_year_tag
+        WHERE user_id = #{userId}  and book_year = #{year}
+    </select>
+
+    <select id="listUserYearTagBookList" resultType="com.book.keeping.bookkeeping.entity.reflect.KeepingBookListItem">
+        SELECT
+            kb.id,
+            kb.book_tag,
+            kb.book_date,
+            but.tag_name,
+            but.tag_icon,
+            kb.book_coast,
+            kb.remark
+        FROM keeping_book kb LEFT JOIN book_user_tag but ON kb.book_tag = but.tag_id
+        WHERE kb.user_id = #{userId}  and DATE_FORMAT(kb.book_date,'%Y') = #{year} and book_tag = #{tag}
+        ORDER BY kb.book_date
+    </select>
+
+    <select id="listUserYearMonthBookPie" resultType="com.book.keeping.bookkeeping.entity.reflect.KeepingBookPieObject">
+        SELECT
+            concat(book_month,'月') as name,
+            sum_book_coast as data,
+            book_month as paramKey
+        FROM view_year_month
+        WHERE user_id = #{userId}  and book_year = #{year}
+    </select>
+
+    <select id="listUserYearMonthBookList" resultType="com.book.keeping.bookkeeping.entity.reflect.KeepingBookListItem">
+        SELECT
+            kb.id,
+            kb.book_tag,
+            kb.book_date,
+            but.tag_name,
+            but.tag_icon,
+            kb.book_coast,
+            kb.remark
+        FROM keeping_book kb LEFT JOIN book_user_tag but ON kb.book_tag = but.tag_id
+        WHERE kb.user_id = #{userId}  and DATE_FORMAT(kb.book_date,'%Y-%m') = #{month}
+        ORDER BY kb.book_date
+    </select>
 
 </mapper>

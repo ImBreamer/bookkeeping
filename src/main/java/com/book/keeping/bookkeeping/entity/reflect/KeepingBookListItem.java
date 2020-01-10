@@ -15,6 +15,7 @@ public class KeepingBookListItem {
     private String tagName;
     private String tagIcon;
     private String bookCoast;
+    private String bookDate;
     private String remark;
 
 }
