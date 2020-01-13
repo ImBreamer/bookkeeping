@@ -55,6 +55,20 @@
       WHERE kb.user_id = #{userId}  and kb.book_date = #{bookDate}
     </select>
 
+    <select id="listBook" resultType="com.book.keeping.bookkeeping.entity.reflect.KeepingBookListItem">
+        SELECT
+            kb.id,
+            kb.book_tag,
+            kb.book_date,
+            but.tag_name,
+            but.tag_icon,
+            kb.book_coast,
+            kb.remark
+        FROM keeping_book kb LEFT JOIN book_user_tag but ON kb.book_tag = but.tag_id
+        WHERE kb.user_id = #{userId}  and kb.book_date = #{bookDate}
+    </select>
+
+
 
     <insert id="InsertKeepingBookOrigin" parameterType="com.book.keeping.bookkeeping.entity.KeepingBook">
       INSERT INTO `book_keeping`.`keeping_book`

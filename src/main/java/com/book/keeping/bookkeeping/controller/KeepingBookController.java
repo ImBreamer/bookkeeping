@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
+
 /**
  * 账单控制层
  * @author zhang.penghao
@@ -23,6 +25,14 @@ public class KeepingBookController {
     @GetMapping("/test")
     public Result listUserMonthDayBook(String month, String userId){
         return Result.success(keepingBookService.listUserMonthDayBook(month,userId));
+    }
+
+    @GetMapping
+    public Result listBook(String startTime,String endTime,
+                           BigDecimal startCoast,BigDecimal endCoast,
+                           String bookTag, String bookAccount,
+                           String userId){
+        return Result.success(keepingBookService.listBook(startTime,endTime,startCoast,endCoast,bookTag,bookAccount,userId));
     }
 
     /**

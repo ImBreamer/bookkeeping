@@ -10,7 +10,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -26,6 +28,16 @@ import java.util.List;
 public class KeepingBookServiceImpl  implements KeepingBookService {
 
     private final KeepingBookMapper keepingBookMapper;
+
+    @Override
+    public List<KeepingBookListItem> listBook(String startTime, String endTime,
+                                              BigDecimal startCoast, BigDecimal endCoast,
+                                              String bookTag, String bookAccount,
+                                              String userId) {
+        String[] tags = StringUtils.split(bookTag, ",");
+        String[] accounts = StringUtils.split(bookAccount, ",");
+        return keepingBookMapper.listBook(null, null, null, null, null, null, null);
+    }
 
     /**
      * @see KeepingBookService#listUserMonthDayBook(String, String)
