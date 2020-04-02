@@ -1,5 +1,6 @@
 package com.book.keeping.bookkeeping.common;
 
+import com.book.keeping.bookkeeping.entity.reflect.BookUserTagDTO;
 import com.book.keeping.bookkeeping.utils.GlobalIdUtil;
 import com.book.keeping.bookkeeping.utils.TokenUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -31,6 +32,7 @@ public class AesOperatorTest {
            log.info(ss);
        }
        log.info("{}",set.contains("/book/test/set"));
+        BookUserTagDTO.builder().build();
 
     }
 }

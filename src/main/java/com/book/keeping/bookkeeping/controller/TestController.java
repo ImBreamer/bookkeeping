@@ -2,6 +2,7 @@ package com.book.keeping.bookkeeping.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.book.keeping.bookkeeping.common.result.Result;
+import com.book.keeping.bookkeeping.service.TestService;
 import com.book.keeping.bookkeeping.utils.TokenUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 /**
  * 功能描述
@@ -27,6 +31,9 @@ public class TestController {
 
     @Autowired
     StringRedisTemplate redisTemplate;
+
+    @Autowired
+    TestService testService;
 
     @PostMapping("/set")
     public Result setRedis() {
@@ -47,5 +54,15 @@ public class TestController {
         result.put("userId", userId);
         result.put("token", token);
         return Result.success(result);
+    }
+
+    @GetMapping("/async")
+    public Result testAsync() throws InterruptedException, ExecutionException, TimeoutException {
+        Future<String> hello = testService.hello();
+        Future<String> goodBye = testService.goodBye();
+        JSONObject json = new JSONObject();
+        json.put("hello", hello.get(5, TimeUnit.SECONDS));
+        json.put("goodBye", goodBye.get(5, TimeUnit.SECONDS));
+        return Result.success(json);
     }
 }
